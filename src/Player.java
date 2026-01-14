@@ -1,5 +1,8 @@
 import java.util.Scanner;
+import java.util.regex.*;
+
 public class Player {
+
 
     private int health;
     private int attack;
@@ -23,8 +26,12 @@ public class Player {
         if (potions > 0) {
             System.out.println("Would you like to use all your potions? \n1. Yes\n2. No");
             System.out.print("Choose: ");
-            int i = s.nextInt();
-            if (i == 1){
+            String choice = s.nextLine();
+            while (choice.matches(".*[a-zA-Z].*") || Integer.parseInt(choice) != 1 && Integer.parseInt(choice) != 2){
+                System.out.println("Invalid option.");
+                choice = s.nextLine();
+            }
+            if (Integer.parseInt(choice) == 1){
                 health += 20 * potions;
                 potions = 0;
                 System.out.println("You healed! Health is now " + health);

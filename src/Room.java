@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.regex.*;
 public class Room {
 
     private Enemy enemy;
@@ -23,16 +23,19 @@ public class Room {
                 System.out.println("1. Attack");
                 System.out.println("2. Heal");
                 System.out.print("Choose: ");
-                int choice = input.nextInt();
-
-                if (choice == 1) {
+                String choice = input.nextLine();
+                while (choice.matches(".*[a-zA-Z].*") || Integer.parseInt(choice) != 1 && Integer.parseInt(choice) != 2){
+                    System.out.println("Invalid option.");
+                    choice = input.nextLine();
+                }
+                if (Integer.parseInt(choice) == 1) {
                     enemy.takeDamage(player.getAttack());
                     System.out.println("You attack the enemy!");
 
                     if (enemy.isAlive()) {
                         enemy.attackPlayer(player);
                     }
-                } else if (choice == 2) {
+                } else if (Integer.parseInt(choice) == 2) {
                     player.heal();
                 }
             }
