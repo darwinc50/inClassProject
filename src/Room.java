@@ -15,6 +15,9 @@ public class Room {
 
         if (enemy != null) {
             System.out.println("A " + enemy.getType() + " appears!");
+            System.out.println("It has " + enemy.getHealth() + " HP!");
+
+            System.out.println("You have " + player.getHealth() + " HP");
 
             while (enemy.isAlive() && player.isAlive()) {
                 System.out.println("1. Attack");

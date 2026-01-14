@@ -41,7 +41,8 @@ public class Dungeon {
 
         Enemy enemy = null;
         if (hasEnemy) {
-            enemy = new Enemy("Goblin", 20 + rand.nextInt(10), 5 + rand.nextInt(5));
+
+            enemy = new Enemy("Goblin", 20 *  ((int) (roomsCleared * .1)) + rand.nextInt(10), 5 + rand.nextInt(5));
         }
 
         return new Room(enemy, hasPotion);

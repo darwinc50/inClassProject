@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Player {
 
     private int health;
@@ -18,10 +19,20 @@ public class Player {
     }
 
     public void heal() {
+        Scanner s = new Scanner(System.in);
         if (potions > 0) {
-            health += 20;
-            potions--;
-            System.out.println("You healed! Health is now " + health);
+            System.out.println("Would you like to use all your potions? \n1. Yes\n2. No");
+            System.out.print("Choose: ");
+            int i = s.nextInt();
+            if (i == 1){
+                health += 20 * potions;
+                potions = 0;
+                System.out.println("You healed! Health is now " + health);
+            } else {
+                health += 20;
+                potions--;
+                System.out.println("You healed! Health is now " + health);
+            }
         } else {
             System.out.println("No potions left!");
         }
