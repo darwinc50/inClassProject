@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class Room {
+
+    private Enemy enemy;
+    private boolean hasPotion;
+
+    public Room(Enemy enemy, boolean hasPotion) {
+        this.enemy = enemy;
+        this.hasPotion = hasPotion;
+    }
+
+    public void enter(Player player, Scanner input) {
+        System.out.println("You enter a new room.");
+
+        if (enemy != null) {
+            System.out.println("A " + enemy.getType() + " appears!");
+
+            while (enemy.isAlive() && player.isAlive()) {
+                System.out.println("1. Attack");
+                System.out.println("2. Heal");
+                System.out.print("Choose: ");
+                int choice = input.nextInt();
+
+                if (choice == 1) {
+                    enemy.takeDamage(player.getAttack());
+                    System.out.println("You attack the enemy!");
+
+                    if (enemy.isAlive()) {
+                        enemy.attackPlayer(player);
+                    }
+                } else if (choice == 2) {
+                    player.heal();
+                }
+            }
+        } else {
+            System.out.println("The room is empty.");
+        }
+
+        if (hasPotion) {
+            System.out.println("You found a potion!");
+            player.increasePotions();
+        }
+    }
+}
